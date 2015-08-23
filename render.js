@@ -9,20 +9,34 @@ function renderHighlighted() {
     }
 }
 function renderBonds() {
+    var typeSpace = 5;
     for (var i = 0; i < bonds.length; i++) {
         var b = bonds[i];
-        console.log()
         var m1 = molecules[b['i1']],
             m2 = molecules[b['i2']];
         
         fill('black');
         stroke('black');
-        line(
-            m1['cx'],
-            m1['cy'],
-            m2['cx'],
-            m2['cy']
-        )
+        var d = dist(m1['mcx'],m1['mcy'],m2['mcx'],m2['mcy']);
+        for (j=0; j < b['type']; j++) {
+            var xOffSet, yOffSet;
+            var slope = Math.abs((m2['cy']-m1['cy'])/(m2['cx']-m1['cx']));
+            if (slope >= 1) {
+             xOffSet=1;
+            yOffSet=0;
+            }
+            else {
+              xOffSet=0;
+            yOffSet=1;  
+            }
+            line(
+            m1['cx']+(typeSpace*xOffSet*j),
+            m1['cy']+(typeSpace*yOffSet*j),
+            m2['cx']+(typeSpace*xOffSet*j),
+            m2['cy']+(typeSpace*yOffSet*j)
+            )
+        
+        }
     }
 }
 function renderMolecules() {

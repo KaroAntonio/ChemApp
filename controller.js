@@ -43,8 +43,13 @@ function bondClicked() {
       var v = {x: m1['cx'], y: m1['cy'] };
         var w = {x: m2['cx'], y: m2['cy'] };
       var d = distToSegment(p,v,w);
-      if (d < selectRange)
+      if (d < selectRange) {
+          if (b['type']==3)
+              b['type']=1;
+          else
+              b['type']++;
           return b;
+      }
   }
     return null;
     
@@ -90,15 +95,17 @@ function addMolecule(cx,cy) {
     molecules.push(mol);
     //Bond the last two molecules
     if (last_mol != undefined)
-        bonds.push(createBond(mol['i'], last_mol['i']))
+        bonds.push(createBond(mol['i'], last_mol['i'],1))
 }
 
-function createBond(i1, i2) {
+function createBond(i1, i2, bondType) {
     //returns a bond object
     var b = {
         'i1':i1,
         'i2':i2,
+        'type':bondType,
     }
+    
     return b;
 }
 
@@ -164,7 +171,7 @@ function createHydroCarbonChain (cx,cy,n) {
     //create bonds
     bonds = [];
     for (var i = 0;i < (n-1); i++) {
-        var b = createBond (i,i+1);
+        var b = createBond (i,i+1,1);
         bonds.push(b);
     }
     //move these to render function
