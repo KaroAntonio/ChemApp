@@ -118,7 +118,7 @@ function createHydroCarbonChain (cx,cy,n) {
     molecules=[];
     //create molecules
     for (var i = 0; i < n; i++) {
-        //console.log (i)
+        //fconsole.log (i)
         var mcx = 0, mcy = 0;
         if (i==0) {
             mcx=cx +15;
@@ -145,16 +145,23 @@ function createHydroCarbonChain (cx,cy,n) {
         var b = createBond (i,i+1);
         bonds.push(b);
     }
-    console.log(bonds [0]['i2']);
     //move these to render function
 }
 function analyzeMolecule() {
     findEnds();
     findLongestChain();
 }
+function addMolecule() {
+ 
+    var adder = molecules.length+1;
+    createHydroCarbonChain(0,0,adder);
+    
+    
+}
 function findEnds() {
     ends = [];
-    
+    if (molecules == 1)
+        ends.push(molecules[0]);
     for (i = 0; i < molecules.length; i++){
         var tracker = 0;
         for (j=0; j <bonds.length; j++){

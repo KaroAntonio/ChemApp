@@ -43,36 +43,42 @@ function setup() {
     
     createCanvas(w, h);
     
-    //create a single circle
+    /*create a single circle
     rand_mol_button = createButton("Add Random Molecule","add_rand_mol");
     rand_mol_button.mousePressed(add_rand_mol);
     place_mol_button = createButton("Enable Place Molecule","place_mol");
     place_mol_button.mousePressed(toggle_place_mol);
+    */
     
     //Button to draw random chem
     
     //buttons for all the hydrocarbons
     var draw_met = createButton("Methane","methane_button");
     draw_met.mousePressed(
-        function() {toggleChain('methane')});
+        function() {createHydroCarbonChain(0,0,1)});
     var draw_et = createButton ("Ethane","ethane_button");
     draw_et.mousePressed(
-        function() {toggleChain('ethane')});
+        function() {createHydroCarbonChain(0,0,2)});
     var draw_pro = createButton ("Propane","propane_button");
     draw_pro.mousePressed(
-        function() {toggleChain('propane')});
+        function() {createHydroCarbonChain(0,0,3)});
     var draw_but = createButton ("Butane","butane_button");
     draw_but.mousePressed(
-        function() {toggleChain('butane')});
+        function() {createHydroCarbonChain(0,0,4)});
     var draw_pen = createButton ("Pentane","pentane_button");
     draw_pen.mousePressed(
-        function() {toggleChain('pentane')});
+        function() {createHydroCarbonChain(0,0,5)});
     var draw_hex = createButton ("Hexane","hexane_button");
     draw_hex.mousePressed(
-        function() {toggleChain('hexane')});
+        function() {createHydroCarbonChain(0,0,6)});
     var draw_hep = createButton ("Heptane","heptane_button");
     draw_hep.mousePressed(
-        function() {toggleChain('heptane')});
+        function() {createHydroCarbonChain(0,0,7)});
+    
+    
+    var add_molecule = createButton ("Add Molecule","add_molecule");
+    add_molecule.mousePressed (
+        addMolecule);
 }
 
 function draw() {
@@ -88,7 +94,7 @@ function draw() {
     renderBonds();
     //renderMolecules();
     renderHighlighted();
-    renderChain();
+    //renderChain();
     renderName();
     renderEndTags();
 }
