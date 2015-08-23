@@ -16,6 +16,10 @@ function updateHighlighted() {
     
     return false;
 }
+function buildName () {
+if (chainLength != 0)
+    name = prefixName[chainLength] + suffixName[maxNumBond];   
+}
 
 function updateSelected() {
     
@@ -26,7 +30,25 @@ function updateSelected() {
         }
     }
 }
+function mouseClicked() {
+  var o = bondClicked();
+}
 
+function bondClicked() {
+    var p = {x: mouseX, y: mouseY};
+  for (i=0; i<bonds.length; i++) {
+      var b = bonds [i];
+      var m1 = molecules [b['i1']]
+      var m2 = molecules [b['i2']]
+      var v = {x: m1['cx'], y: m1['cy'] };
+        var w = {x: m2['cx'], y: m2['cy'] };
+      var d = distToSegment(p,v,w);
+      if (d < selectRange)
+          return b;
+  }
+    return null;
+    
+}
 function mousePressed() {
     var o = objectClicked()
     if (o == null) {
@@ -155,8 +177,7 @@ function addMolecule() {
  
     var adder = molecules.length+1;
     createHydroCarbonChain(0,0,adder);
-    
-    
+
 }
 function findEnds() {
     ends = [];
@@ -177,56 +198,4 @@ function findEnds() {
 function findLongestChain() {
  chainLength = molecules.length;   
 }
-function toggleChain(name) {
-    isMethanePressed = false;
-    isEthanePressed = false;
-    isPropanePressed = false;
-    isButanePressed = false;
-    isPentanePressed = false;
-    isHexanePressed = false;
-    isHeptanePressed = false;
-    
-    if (name == 'methane'){
-        if (isMethanePressed == true)
-            isMethanePressed = false;
-        else
-            isMethanePressed = true;  
-    }
-    else if (name == 'ethane'){
-        if (isEthanePressed == true)
-            isEthanePressed = false;
-        else
-            isEthanePressed = true;
-    }
-    else if (name == 'propane'){
-        if (isPropanePressed == true)
-            isPropanePressed = false;
-        else
-            isPropanePressed = true;
-    }
-    else if (name == 'butane'){
-        if (isButanePressed == true)
-            isButanePressed = false;
-        else
-            isButanePressed = true;
-    }
-    else if (name == 'pentane'){
-        if (isPentanePressed == true)
-            isPentanePressed = false;
-        else
-            isPentanePressed = true;
-    }
-    else if (name == 'hexane'){
-        if (isHexanePressed == true)
-            isHexanePressed = false;
-        else
-            isHexanePressed = true;
-    }
-    else if (name == 'heptane'){
-        if (isHeptanePressed == true)
-            isHeptanePressed = false;
-        else
-            isHeptanePressed = true;
-    }
-        
-}
+ 

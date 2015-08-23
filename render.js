@@ -34,8 +34,7 @@ function renderMolecules() {
     }
 }
 function renderName() {
-if (chainLength != 0)
-    text(nameMap[chainLength],w/2, h/2);   
+    text(name,w/2, h/2);   
 }
 function renderChain() {
     if (isMethanePressed == true)

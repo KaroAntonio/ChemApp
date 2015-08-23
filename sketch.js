@@ -27,6 +27,11 @@ var isHexanePressed = false;
 var isHeptanePressed = false;
 
 var chainLength = 0;
+var maxNumBond = 1;
+
+var name;
+
+var selectRange = 15;
 
 var nameMap = {
     1:'methane',
@@ -37,7 +42,20 @@ var nameMap = {
     6:'hexane',
     7:'heptane'
 }
-
+var prefixName = {
+    1:'meth',
+    2:'eth',
+    3:'prop',
+    4:'but',
+    5:'pent',
+    6:'hex',
+    7:'hept'
+}
+var suffixName = {
+    1:'ane',
+    2:'ene',
+    3:'yne'
+}
 function setup() {
     console.log('Setup')
     
@@ -89,6 +107,7 @@ function draw() {
     updateHighlighted();
     updateSelected();
     analyzeMolecule();
+    buildName();
     
     //Render
     renderBonds();
